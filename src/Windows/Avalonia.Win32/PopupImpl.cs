@@ -9,6 +9,20 @@ namespace Avalonia.Win32
 {
     public class PopupImpl : WindowImpl, IPopupImpl
     {
+        public void SetFocusable(bool focusable)
+        {
+            if (!focusable)
+            {
+                UnmanagedMethods.SetWindowLong(HWnd, -20,
+                    UnmanagedMethods.GetWindowLong(HWnd, -20) | (uint)UnmanagedMethods.WindowStyles.WS_EX_NOACTIVATE); 
+            }
+            else
+            {
+                UnmanagedMethods.SetWindowLong(HWnd, -20,
+                    UnmanagedMethods.GetWindowLong(HWnd, -20) & ~(uint)UnmanagedMethods.WindowStyles.WS_EX_NOACTIVATE);
+            }
+        }
+
         public override void Show()
         {
             UnmanagedMethods.ShowWindow(Handle.Handle, UnmanagedMethods.ShowWindowCommand.ShowNoActivate);

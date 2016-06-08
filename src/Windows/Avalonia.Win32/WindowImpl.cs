@@ -55,6 +55,8 @@ namespace Avalonia.Win32
 
         public Action<double> ScalingChanged { get; set; }
 
+        protected IntPtr HWnd => _hwnd;
+
         public Thickness BorderThickness
         {
             get

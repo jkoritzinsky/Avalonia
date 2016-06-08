@@ -77,6 +77,7 @@ namespace Avalonia.Controls.Primitives
             IsHitTestVisibleProperty.OverrideDefaultValue<Popup>(false);
             ChildProperty.Changed.AddClassHandler<Popup>(x => x.ChildChanged);
             IsOpenProperty.Changed.AddClassHandler<Popup>(x => x.IsOpenChanged);
+            FocusableProperty.Changed.AddClassHandler<Popup>((x, e) => x.PopupRoot.PlatformImpl.SetFocusable((bool)e.NewValue));
         }
 
         /// <summary>

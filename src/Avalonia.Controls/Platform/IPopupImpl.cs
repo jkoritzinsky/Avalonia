@@ -8,6 +8,6 @@ namespace Avalonia.Platform
     /// </summary>
     public interface IPopupImpl : ITopLevelImpl
     {
-
+        void SetFocusable(bool focusable);
     }
 }

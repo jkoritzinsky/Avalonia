@@ -3,6 +3,7 @@
 
 using Gtk;
 using Avalonia.Platform;
+using System;
 
 namespace Avalonia.Gtk
 {
@@ -11,6 +12,11 @@ namespace Avalonia.Gtk
         public PopupImpl()
             : base(WindowType.Popup)
         {
+        }
+
+        public void SetFocusable(bool focusable)
+        {
+            // I haven't found a way to do this in GTK
         }
     }
 }
