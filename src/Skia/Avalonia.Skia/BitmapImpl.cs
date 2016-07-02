@@ -80,5 +80,9 @@ namespace Avalonia.Skia
             return new DrawingContext(new BitmapDrawingContext(Bitmap));
         }
 
+        public Stream GetBytes()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,6 +15,7 @@ using Avalonia.Input.Raw;
 using Avalonia.Platform;
 using Avalonia.Win32.Input;
 using Avalonia.Win32.Interop;
+using System.Drawing;
 
 namespace Avalonia.Win32
 {
@@ -679,5 +680,14 @@ namespace Avalonia.Win32
             UnmanagedMethods.ShowWindow(_hwnd, command);
         }
 
+        public void SetIcon(IBitmapImpl icon)
+        {
+            using (var imageStream = icon.GetBytes())
+            using (var nativeIcon = new Icon(imageStream))
+            {
+                UnmanagedMethods.PostMessage(_hwnd, (int)UnmanagedMethods.WindowsMessage.WM_SETICON,
+                    new IntPtr((int)UnmanagedMethods.Icons.ICON_BIG), nativeIcon.Handle);
+            }
+        }
     }
 }

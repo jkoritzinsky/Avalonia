@@ -383,5 +383,10 @@ namespace Avalonia.Gtk
             Input(e);
             return true;
         }
+
+        public void SetIcon(IBitmapImpl icon)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

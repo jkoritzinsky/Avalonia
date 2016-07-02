@@ -23,5 +23,7 @@ namespace Avalonia.Platform
         /// </summary>
         /// <param name="fileName">The filename.</param>
         void Save(string fileName);
+
+        System.IO.Stream GetBytes();
     }
 }

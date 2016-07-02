@@ -87,6 +87,7 @@ namespace Avalonia.Controls
             TitleProperty.Changed.AddClassHandler<Window>((s, e) => s.PlatformImpl.SetTitle((string)e.NewValue));
             HasSystemDecorationsProperty.Changed.AddClassHandler<Window>(
                 (s, e) => s.PlatformImpl.SetSystemDecorations((bool) e.NewValue));
+            IconProperty.Changed.AddClassHandler<Window>((s, e) => s.PlatformImpl.SetIcon(((IBitmap)e.NewValue).PlatformImpl));
         }
 
         /// <summary>
