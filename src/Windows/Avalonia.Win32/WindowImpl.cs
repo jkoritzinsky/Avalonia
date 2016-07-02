@@ -683,10 +683,10 @@ namespace Avalonia.Win32
         public void SetIcon(IBitmapImpl icon)
         {
             using (var imageStream = icon.GetBytes())
-            using (var nativeIcon = new Icon(imageStream))
+            using (var gdiPlusBitmap = new Bitmap(imageStream))
             {
                 UnmanagedMethods.PostMessage(_hwnd, (int)UnmanagedMethods.WindowsMessage.WM_SETICON,
-                    new IntPtr((int)UnmanagedMethods.Icons.ICON_BIG), nativeIcon.Handle);
+                    new IntPtr((int)UnmanagedMethods.Icons.ICON_BIG), gdiPlusBitmap.GetHicon());
             }
         }
     }
