@@ -76,13 +76,16 @@ namespace Avalonia.Skia
 
         public DrawingContext CreateDrawingContext()
         {
-
             return new DrawingContext(new BitmapDrawingContext(Bitmap));
         }
 
         public Stream GetBytes()
         {
-            return new MemoryStream(Bitmap.Bytes);
+            IntPtr length;
+            using (var img = SKImage.FromPixels(Bitmap.Info, Bitmap.GetPixels(out length), Bitmap.RowBytes))
+            {
+                return img.Encode().AsStream();
+            }
         }
     }
 }
