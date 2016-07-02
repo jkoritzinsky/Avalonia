@@ -11,6 +11,7 @@ using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Styling;
 using System.Collections.Generic;
+using Avalonia.Media.Imaging;
 
 namespace Avalonia.Controls
 {
@@ -69,6 +70,9 @@ namespace Avalonia.Controls
         /// </summary>
         public static readonly StyledProperty<string> TitleProperty =
             AvaloniaProperty.Register<Window, string>(nameof(Title), "Window");
+
+        public static readonly StyledProperty<IBitmap> IconProperty =
+            AvaloniaProperty.Register<Window, IBitmap>(nameof(Icon));
 
         private readonly NameScope _nameScope = new NameScope();
         private object _dialogResult;
@@ -157,6 +161,12 @@ namespace Avalonia.Controls
         {
             get { return this.PlatformImpl.WindowState; }
             set { this.PlatformImpl.WindowState = value; }
+        }
+
+        public IBitmap Icon
+        {
+            get { return GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
         }
 
         /// <inheritdoc/>
