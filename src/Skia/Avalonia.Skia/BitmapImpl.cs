@@ -82,7 +82,7 @@ namespace Avalonia.Skia
 
         public Stream GetBytes()
         {
-            throw new NotImplementedException();
+            return new MemoryStream(Bitmap.Bytes);
         }
     }
 }

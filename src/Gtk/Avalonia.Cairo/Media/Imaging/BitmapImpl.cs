@@ -33,7 +33,7 @@ namespace Avalonia.Cairo.Media.Imaging
 
         public Stream GetBytes()
         {
-            throw new NotImplementedException();
+            return new MemoryStream(Surface.SaveToBuffer("png"));
         }
     }
 }

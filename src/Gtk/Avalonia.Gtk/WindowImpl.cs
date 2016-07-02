@@ -53,11 +53,11 @@ namespace Avalonia.Gtk
             Realize();
         }
 
-		protected override void OnRealized ()
-		{
-			base.OnRealized ();
-			_imContext.ClientWindow = this.GdkWindow;
-		}
+        protected override void OnRealized ()
+        {
+            base.OnRealized ();
+            _imContext.ClientWindow = this.GdkWindow;
+        }
 
         public Size ClientSize
         {
@@ -386,7 +386,10 @@ namespace Avalonia.Gtk
 
         public void SetIcon(IBitmapImpl icon)
         {
-            throw new NotImplementedException();
+            using (var stream = icon.GetBytes())
+            {
+                Icon = new Pixbuf(stream);
+            }
         }
     }
 }
