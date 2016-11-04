@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C9EE49D-0D3F-48F4-BD72-5FB33884630C}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ControlCatalog.OSX</RootNamespace>
+    <AssemblyName>ControlCatalog.OSX</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <HttpClientHandler></HttpClientHandler>
+    <TlsProvider></TlsProvider>
+    <LinkMode></LinkMode>
+    <XamMacArch></XamMacArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>true</EnableCodeSigning>
+    <CodeSigningKey>Developer ID Application</CodeSigningKey>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <LinkMode>SdkOnly</LinkMode>
+    <HttpClientHandler></HttpClientHandler>
+    <TlsProvider></TlsProvider>
+    <XamMacArch></XamMacArch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\packages\System.Reactive.Interfaces.3.0.0\lib\netstandard1.0\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\packages\System.Reactive.Core.3.0.0\lib\netstandard1.3\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\packages\System.Reactive.Linq.3.0.0\lib\netstandard1.3\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\packages\System.Reactive.PlatformServices.3.0.0\lib\netstandard1.3\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Avalonia.Animation\Avalonia.Animation.csproj">
+      <Project>{D211E587-D8BC-45B9-95A4-F297C8FA5200}</Project>
+      <Name>Avalonia.Animation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Base\Avalonia.Base.csproj">
+      <Project>{B09B78D8-9B26-48B0-9149-D64A2F120F3F}</Project>
+      <Name>Avalonia.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Controls\Avalonia.Controls.csproj">
+      <Project>{D2221C82-4A25-4583-9B43-D791E3F6820C}</Project>
+      <Name>Avalonia.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.DesignerSupport\Avalonia.DesignerSupport.csproj">
+      <Project>{799A7BB5-3C2C-48B6-85A7-406A12C420DA}</Project>
+      <Name>Avalonia.DesignerSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Diagnostics\Avalonia.Diagnostics.csproj">
+      <Project>{7062AE20-5DCC-4442-9645-8195BDECE63E}</Project>
+      <Name>Avalonia.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Input\Avalonia.Input.csproj">
+      <Project>{62024B2D-53EB-4638-B26B-85EEAA54866E}</Project>
+      <Name>Avalonia.Input</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Interactivity\Avalonia.Interactivity.csproj">
+      <Project>{6B0ED19D-A08B-461C-A9D9-A9EE40B0C06B}</Project>
+      <Name>Avalonia.Interactivity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Layout\Avalonia.Layout.csproj">
+      <Project>{42472427-4774-4C81-8AFF-9F27B8E31721}</Project>
+      <Name>Avalonia.Layout</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Logging.Serilog\Avalonia.Logging.Serilog.csproj">
+      <Project>{B61B66A3-B82D-4875-8001-89D3394FE0C9}</Project>
+      <Name>Avalonia.Logging.Serilog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Markup\Avalonia.Markup\Avalonia.Markup.csproj">
+      <Project>{6417E941-21BC-467B-A771-0DE389353CE6}</Project>
+      <Name>Avalonia.Markup</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Markup\Avalonia.Markup.Xaml\Avalonia.Markup.Xaml.csproj">
+      <Project>{3E53A01A-B331-47F3-B828-4A5717E77A24}</Project>
+      <Name>Avalonia.Markup.Xaml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\OSX\Avalonia.OSX\Avalonia.OSX.csproj">
+      <Project>{77223D27-34AC-4173-9FC3-D5987AF72CD7}</Project>
+      <Name>Avalonia.OSX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.ReactiveUI\Avalonia.ReactiveUI.csproj">
+      <Project>{6417B24E-49C2-4985-8DB2-3AB9D898EC91}</Project>
+      <Name>Avalonia.ReactiveUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.SceneGraph\Avalonia.SceneGraph.csproj">
+      <Project>{EB582467-6ABB-43A1-B052-E981BA910E3A}</Project>
+      <Name>Avalonia.SceneGraph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Styling\Avalonia.Styling.csproj">
+      <Project>{F1BAA01A-F176-4C6A-B39D-5B40BB1B148F}</Project>
+      <Name>Avalonia.Styling</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Avalonia.Themes.Default\Avalonia.Themes.Default.csproj">
+      <Project>{3E10A5FA-E8DA-48B1-AD44-6A5B6CB7750F}</Project>
+      <Name>Avalonia.Themes.Default</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlCatalog\ControlCatalog.csproj">
+      <Project>{D0A739B9-3C68-4BA6-A328-41606954B6BD}</Project>
+      <Name>ControlCatalog</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+</Project>
