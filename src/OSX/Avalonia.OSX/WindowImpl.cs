@@ -8,14 +8,14 @@ using Avalonia.Platform;
 
 namespace Avalonia.OSX
 {
-	public class WindowImpl : NSWindowDelegate, IWindowImpl
+	class WindowImpl : NSWindowDelegate, IWindowImpl
 	{
 		private const NSWindowStyle WindowDecorations = NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Miniaturizable;
-		private readonly NSWindow window;
+		private readonly NSAvaloniaWindow window;
 
 		public WindowImpl()
 		{
-			window = new NSWindow();
+			window = new NSAvaloniaWindow(input => Input?.Invoke(input));
 			window.StyleMask |= WindowDecorations;
 			window.Delegate = this;
 		}
@@ -179,7 +179,7 @@ namespace Avalonia.OSX
 
 		public void SetInputRoot(IInputRoot inputRoot)
 		{
-			
+			this.window.InputRoot = inputRoot;
 		}
 
 		public void SetSystemDecorations(bool enabled)

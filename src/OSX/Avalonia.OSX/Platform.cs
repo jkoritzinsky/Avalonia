@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Platform;
 
 namespace Avalonia
@@ -16,14 +17,16 @@ namespace Avalonia
 
 namespace Avalonia.OSX
 {
-	public static class Platform
+	static class Platform
 	{
 		public static void Initialize()
 		{
 			AvaloniaLocator.CurrentMutable
 			               .Bind<IPlatformThreadingInterface>().ToSingleton<PlatformThreadingInterface>()
 			               .Bind<IWindowingPlatform>().ToSingleton<WindowingPlatform>()
-			               .Bind<IPlatformIconLoader>().ToSingleton<PlatformIconLoader>();
+			               .Bind<IPlatformIconLoader>().ToSingleton<PlatformIconLoader>()
+			               .Bind<IKeyboardDevice>().ToSingleton<KeyboardDevice>()
+			               .Bind<IMouseDevice>().ToSingleton<MouseDevice>();
 		}
 	}
 }

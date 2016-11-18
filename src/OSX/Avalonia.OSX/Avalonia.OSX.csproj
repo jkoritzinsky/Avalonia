@@ -76,6 +76,8 @@
     <Compile Include="StandardRuntimePlatform.cs" />
     <Compile Include="AppBuilder.cs" />
     <Compile Include="PlatformIconLoader.cs" />
+    <Compile Include="NSAvaloniaWindow.cs" />
+    <Compile Include="KeyMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Avalonia.Base\Avalonia.Base.csproj">
