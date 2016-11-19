@@ -115,15 +115,48 @@ namespace Avalonia.OSX
 
 		public Action<double> ScalingChanged { get; set; }
 
+
+		public override void DidMiniaturize(Foundation.NSNotification notification)
+		{
+			_windowState = WindowState.Minimized;
+		}
+
+		public override void DidDeminiaturize(Foundation.NSNotification notification)
+		{
+			_windowState = WindowState.Normal;
+		}
+
+		private WindowState _windowState = WindowState.Normal;
 		public WindowState WindowState
 		{
 			get
 			{
-				return WindowState.Normal;
+				return _windowState;
 			}
 
 			set
-			{}
+			{
+				switch (value)
+				{
+					case WindowState.Normal:
+						if (WindowState == WindowState.Minimized)
+						{
+							window.Deminiaturize(this);
+						}
+						break;
+					case WindowState.Minimized:
+						window.Miniaturize(this);
+						break;
+					case WindowState.Maximized:
+						var screen = window.Screen ?? NSScreen.MainScreen;
+						if(screen != null) {
+							window.SetFrame(screen.VisibleFrame, true);
+						}
+						break;
+					default:
+						break;
+				}
+			}
 		}
 
 		public virtual void Activate()
@@ -179,7 +212,7 @@ namespace Avalonia.OSX
 
 		public void SetInputRoot(IInputRoot inputRoot)
 		{
-			this.window.InputRoot = inputRoot;
+			window.InputRoot = inputRoot;
 		}
 
 		public void SetSystemDecorations(bool enabled)
