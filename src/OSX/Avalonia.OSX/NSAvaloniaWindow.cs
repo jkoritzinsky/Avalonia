@@ -2,6 +2,7 @@
 using AppKit;
 using Avalonia.Input;
 using Avalonia.Input.Raw;
+using Foundation;
 
 namespace Avalonia.OSX
 {
@@ -19,7 +20,6 @@ namespace Avalonia.OSX
 
 		public override void FlagsChanged(NSEvent theEvent)
 		{
-			base.FlagsChanged(theEvent);
 			var pressedModifiers = ~previousModifiers & theEvent.ModifierFlags;
 			var releasedModifiers = previousModifiers & theEvent.ModifierFlags;
 			if (pressedModifiers != 0)
@@ -43,7 +43,6 @@ namespace Avalonia.OSX
 
 		public override void KeyUp(NSEvent theEvent)
 		{
-			base.KeyUp(theEvent);
 			InputCallback?.Invoke(new RawKeyEventArgs(KeyboardDevice.Instance,
 									  (uint)theEvent.Timestamp,
 									  RawKeyEventType.KeyUp,
@@ -53,72 +52,131 @@ namespace Avalonia.OSX
 
 		public override void KeyDown(NSEvent theEvent)
 		{
-			base.KeyDown(theEvent);
 			InputCallback?.Invoke(new RawKeyEventArgs(KeyboardDevice.Instance,
 									  (uint)theEvent.Timestamp,
 						              RawKeyEventType.KeyDown,
 									  KeyMap.KeyCodeMap[theEvent.KeyCode],
 									  theEvent.ModifierFlags.ToAvalonia()));
+			InputCallback?.Invoke(new RawTextInputEventArgs(KeyboardDevice.Instance,
+									  (uint)theEvent.Timestamp,
+									  theEvent.Characters));
 		}
 
 		public override void MouseDown(NSEvent theEvent)
 		{
-			base.MouseDown(theEvent);
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+										RawMouseEventType.LeftButtonDown,
+										theEvent.LocationInWindow.ToAvalonia(),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
 		}
 
 		public override void MouseUp(NSEvent theEvent)
 		{
-			base.MouseUp(theEvent);
-		}
-
-		public override void MouseDragged(NSEvent theEvent)
-		{
-			base.MouseDragged(theEvent);
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+										RawMouseEventType.LeftButtonUp,
+										theEvent.LocationInWindow.ToAvalonia(),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
 		}
 
 		public override void RightMouseDown(NSEvent theEvent)
 		{
-			base.RightMouseDown(theEvent);
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+										RawMouseEventType.RightButtonDown,
+										theEvent.LocationInWindow.ToAvalonia(),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
 		}
 
 		public override void RightMouseUp(NSEvent theEvent)
 		{
-			base.RightMouseUp(theEvent);
-		}
-
-		public override void RightMouseDragged(NSEvent theEvent)
-		{
-			base.RightMouseDragged(theEvent);
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+										RawMouseEventType.RightButtonUp,
+										theEvent.LocationInWindow.ToAvalonia(),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
 		}
 
 		public override void OtherMouseUp(NSEvent theEvent)
 		{
-			base.OtherMouseUp(theEvent);
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+										RawMouseEventType.MiddleButtonUp,
+										theEvent.LocationInWindow.ToAvalonia(),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
 		}
 
 		public override void OtherMouseDown(NSEvent theEvent)
 		{
-			base.OtherMouseDown(theEvent);
-		}
-
-		public override void OtherMouseDragged(NSEvent theEvent)
-		{
-			base.OtherMouseDragged(theEvent);
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+										RawMouseEventType.MiddleButtonDown,
+										theEvent.LocationInWindow.ToAvalonia(),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
 		}
 
 		public override void MouseMoved(NSEvent theEvent)
 		{
-			base.MouseMoved(theEvent);
-		}
-
-		public override void MouseEntered(NSEvent theEvent)
-		{
-			base.MouseEntered(theEvent);
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+										RawMouseEventType.Move,
+										theEvent.LocationInWindow.ToAvalonia(),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
 		}
 
 		public override void MouseExited(NSEvent theEvent)
 		{
-			base.MouseExited(theEvent);
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+				                        RawMouseEventType.LeaveWindow,
+										theEvent.LocationInWindow.ToAvalonia(),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
+		}
+
+		public override void ScrollWheel(NSEvent theEvent)
+		{
+			if (InputRoot != null)
+			{
+				InputCallback?.Invoke(new RawMouseWheelEventArgs(MouseDevice.Instance,
+										(uint)theEvent.Timestamp,
+										InputRoot,
+				                        theEvent.LocationInWindow.ToAvalonia(),
+				                        new Vector(theEvent.ScrollingDeltaX, theEvent.ScrollingDeltaY),
+										theEvent.ModifierFlags.ToAvalonia()));
+			}
 		}
 	}
 }
