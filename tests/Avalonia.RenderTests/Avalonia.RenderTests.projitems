@@ -11,19 +11,19 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)GeometryClippingTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OpacityMaskTests.cs" />
-    <Compile Include="Media\FormattedTextImplTests.cs" />
-    <Compile Include="Controls\ImageTests.cs" />
-    <Compile Include="Controls\BorderTests.cs" />
-    <Compile Include="Media\ImageBrushTests.cs" />
-    <Compile Include="Media\LinearGradientBrushTests.cs" />
-    <Compile Include="Media\VisualBrushTests.cs" />
-    <Compile Include="Shapes\LineTests.cs" />
-    <Compile Include="Shapes\PathTests.cs" />
-    <Compile Include="Shapes\EllipseTests.cs" />
-    <Compile Include="Shapes\PolygonTests.cs" />
-    <Compile Include="Shapes\PolylineTests.cs" />
-    <Compile Include="Shapes\RectangleTests.cs" />
-    <Compile Include="TestBase.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Media\FormattedTextImplTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\BorderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Media\ImageBrushTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Media\LinearGradientBrushTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Media\VisualBrushTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\LineTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\PathTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\EllipseTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\PolygonTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\PolylineTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\RectangleTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
   </ItemGroup>
 </Project>
