@@ -8,4 +8,15 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Avalonia.Quartz</Import_RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)StreamGeometryImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StreamGeometryContextImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FormattedTextImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BitmapImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlatformRenderInterface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RenderTargetBitmapImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DrawingContextImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platform.cs" />
+  </ItemGroup>
 </Project>

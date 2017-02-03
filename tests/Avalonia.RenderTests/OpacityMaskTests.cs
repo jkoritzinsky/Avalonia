@@ -10,6 +10,8 @@ using Xunit;
 namespace Avalonia.Cairo.RenderTests
 #elif AVALONIA_SKIA
 namespace Avalonia.Skia.RenderTests
+#elif AVALONIA_QUARTZ
+namespace Avalonia.Quartz.RenderTests
 #else
 namespace Avalonia.Direct2D1.RenderTests
 #endif
@@ -21,7 +23,11 @@ namespace Avalonia.Direct2D1.RenderTests
         {
         }
 
+#if AVALONIA_QUARTZ
+		[Fact(Skip = "Not implemented")]
+#else
         [Fact]
+#endif
         public void Opacity_Mask_Masks_Element()
         {
             var target = new Canvas

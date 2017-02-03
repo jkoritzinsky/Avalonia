@@ -14,6 +14,8 @@ using Xunit;
 using Avalonia.Cairo;
 #elif AVALONIA_SKIA
 using Avalonia.Skia;
+#elif AVALONIA_QUARTZ
+using Avalonia.Quartz;
 #else
 using Avalonia.Direct2D1;
 #endif
@@ -22,6 +24,8 @@ using Avalonia.Direct2D1;
 namespace Avalonia.Cairo.RenderTests
 #elif AVALONIA_SKIA
 namespace Avalonia.Skia.RenderTests
+#elif AVALONIA_QUARTZ
+namespace Avalonia.Quartz.RenderTests
 #else
 namespace Avalonia.Direct2D1.RenderTests
 #endif
@@ -34,6 +38,8 @@ namespace Avalonia.Direct2D1.RenderTests
             CairoPlatform.Initialize();
 #elif AVALONIA_SKIA
             SkiaPlatform.Initialize();
+#elif AVALONIA_QUARTZ
+			Quartz.Platform.Initialize();
 #else
             Direct2D1Platform.Initialize();
 #endif
@@ -45,6 +51,8 @@ namespace Avalonia.Direct2D1.RenderTests
             string testFiles = Path.GetFullPath(@"..\..\tests\TestFiles\Cairo");
 #elif AVALONIA_SKIA
             string testFiles = Path.GetFullPath(@"..\..\tests\TestFiles\Skia");
+#elif AVALONIA_QUARTZ
+			string testFiles = Path.GetFullPath(@"..\..\tests\TestFiles\Quartz");
 #else
             string testFiles = Path.GetFullPath(@"..\..\tests\TestFiles\Direct2D1");
 #endif
@@ -81,6 +89,7 @@ namespace Avalonia.Direct2D1.RenderTests
         {
             string expectedPath = Path.Combine(OutputPath, testName + ".expected.png");
             string actualPath = Path.Combine(OutputPath, testName + ".out.png");
+#if !AVALONIA_QUARTZ
             using (MagickImage expected = new MagickImage(expectedPath))
             using (MagickImage actual = new MagickImage(actualPath))
             {
@@ -91,6 +100,24 @@ namespace Avalonia.Direct2D1.RenderTests
                     Assert.True(false, actualPath + ": Error = " + error);
                 }
             }
+#else
+			//using (var expectedSource = ImageIO.CGImageSource.FromUrl(new Foundation.NSUrl(expectedPath)))
+			//using (var expected = expectedSource.CreateImage(0, new ImageIO.CGImageOptions { BestGuessTypeIdentifier = MobileCoreServices.UTType.PNG }))
+			//using (var actualSource = ImageIO.CGImageSource.FromUrl(new Foundation.NSUrl(actualPath)))
+			//using (var actual = actualSource.CreateImage(0, new ImageIO.CGImageOptions { BestGuessTypeIdentifier = MobileCoreServices.UTType.PNG }))
+			//{
+			//	Assert.Same(expected.Width, actual.Width);
+			//	Assert.Same(expected.Height, actual.Height);
+			//	double sum = 0, min = double.NegativeInfinity, max = double.PositiveInfinity;
+			//	for (int i = 0; i < expected.Width; i++)
+			//	{
+			//		for (int j = 0; j < expected.Height; j++)
+			//		{
+			//			sum += expected.
+			//		}
+			//	}
+			//}
+#endif
         }
     }
 }

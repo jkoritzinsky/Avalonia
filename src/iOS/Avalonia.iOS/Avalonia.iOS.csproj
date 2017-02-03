@@ -112,6 +112,8 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\..\Shared\RenderHelpers\RenderHelpers.projitems" Label="Shared" Condition="Exists('..\..\Shared\RenderHelpers\RenderHelpers.projitems')" />
+  <Import Project="..\..\Apple\Avalonia.Quartz\Avalonia.Quartz.projitems" Label="Shared" Condition="Exists('..\..\Apple\Avalonia.Quartz\Avalonia.Quartz.projitems')" />
   <Import Project="..\..\Shared\PlatformSupport\PlatformSupport.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

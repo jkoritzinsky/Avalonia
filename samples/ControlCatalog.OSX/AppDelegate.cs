@@ -12,8 +12,8 @@ namespace ControlCatalog.OSX
 		{
 			AppBuilder.Configure<App>()
 					  .UseAppKit()
-					  .UseRenderingSubsystem(() => { }, "NONE")
-			          .Start<Avalonia.Controls.Window>();
+			          .UseQuartz()
+			          .Start<MainWindow>();
 		}
 	}
 }

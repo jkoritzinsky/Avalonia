@@ -14,6 +14,8 @@ using Xunit;
 namespace Avalonia.Cairo.RenderTests.Media
 #elif AVALONIA_SKIA
 namespace Avalonia.Skia.RenderTests
+#elif AVALONIA_QUARTZ
+namespace Avalonia.Quartz.RenderTests
 #else
 namespace Avalonia.Direct2D1.RenderTests.Media
 #endif

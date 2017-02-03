@@ -15,7 +15,7 @@ namespace Avalonia.OSX
 
 		public WindowImpl()
 		{
-			window = new NSAvaloniaWindow(input => Input?.Invoke(input));
+			window = new NSAvaloniaWindow(input => Input?.Invoke(input), () => Paint?.Invoke(new Rect(ClientSize)));
 			window.StyleMask |= WindowDecorations;
 			window.Delegate = this;
 		}
@@ -64,7 +64,7 @@ namespace Avalonia.OSX
 
 		public Action Deactivated { get; set; }
 
-		public new IPlatformHandle Handle => new PlatformHandle(window.WindowRef, "NSWindow");
+		public new IPlatformHandle Handle => new PlatformHandle(window.Handle, "NSWindow");
 
 		public Action<RawInputEventArgs> Input { get; set; }
 
@@ -242,6 +242,10 @@ namespace Avalonia.OSX
 		{
 			window.MakeKeyAndOrderFront(this);
 			return Disposable.Empty;
+		}
+
+		public void SetCoverTaskbarWhenMaximized(bool enable)
+		{
 		}
 	}
 }

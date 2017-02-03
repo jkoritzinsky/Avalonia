@@ -10,11 +10,14 @@ namespace Avalonia.OSX
 	{
 		private NSEventModifierMask previousModifiers = 0;
 		public IInputRoot InputRoot { get; set; }
-		public Action<RawInputEventArgs> InputCallback { get; set; }
+		public Action<RawInputEventArgs> InputCallback { get; }
+		public Action UpdateCallback { get; }
 
-		public NSAvaloniaWindow(Action<RawInputEventArgs> inputCallback)
+
+		public NSAvaloniaWindow(Action<RawInputEventArgs> inputCallback, Action updateCallback)
 		{
 			InputCallback = inputCallback;
+			UpdateCallback = updateCallback;
 			AcceptsMouseMovedEvents = true;
 		}
 
@@ -177,6 +180,12 @@ namespace Avalonia.OSX
 				                        new Vector(theEvent.ScrollingDeltaX, theEvent.ScrollingDeltaY),
 										theEvent.ModifierFlags.ToAvalonia()));
 			}
+		}
+
+		public override void Update()
+		{
+			base.Update();
+			UpdateCallback?.Invoke();
 		}
 	}
 }

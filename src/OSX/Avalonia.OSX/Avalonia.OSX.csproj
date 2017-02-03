@@ -71,13 +71,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowingPlatform.cs" />
     <Compile Include="WindowImpl.cs" />
-    <Compile Include="ConversionExtensions.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="StandardRuntimePlatform.cs" />
     <Compile Include="AppBuilder.cs" />
     <Compile Include="PlatformIconLoader.cs" />
     <Compile Include="NSAvaloniaWindow.cs" />
     <Compile Include="KeyMap.cs" />
+    <Compile Include="RenderTarget.cs" />
+    <Compile Include="ConversionExtensions.cs" />
+    <Compile Include="RendererFactory.cs" />
+    <Compile Include="PlatformSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Avalonia.Base\Avalonia.Base.csproj">
@@ -96,18 +99,28 @@
       <Project>{62024B2D-53EB-4638-B26B-85EEAA54866E}</Project>
       <Name>Avalonia.Input</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Avalonia.SceneGraph\Avalonia.SceneGraph.csproj">
+    <ProjectReference Include="..\..\Avalonia.Visuals\Avalonia.Visuals.csproj">
       <Project>{EB582467-6ABB-43A1-B052-E981BA910E3A}</Project>
-      <Name>Avalonia.SceneGraph</Name>
+      <Name>Avalonia.Visuals</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Avalonia.Interactivity\Avalonia.Interactivity.csproj">
       <Project>{6B0ED19D-A08B-461C-A9D9-A9EE40B0C06B}</Project>
       <Name>Avalonia.Interactivity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Avalonia.Styling\Avalonia.Styling.csproj">
+      <Project>{F1BAA01A-F176-4C6A-B39D-5B40BB1B148F}</Project>
+      <Name>Avalonia.Styling</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Avalonia.Layout\Avalonia.Layout.csproj">
+      <Project>{42472427-4774-4C81-8AFF-9F27B8E31721}</Project>
+      <Name>Avalonia.Layout</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\..\Shared\RenderHelpers\RenderHelpers.projitems" Label="Shared" Condition="Exists('..\..\Shared\RenderHelpers\RenderHelpers.projitems')" />
+  <Import Project="..\..\Apple\Avalonia.Quartz\Avalonia.Quartz.projitems" Label="Shared" Condition="Exists('..\..\Apple\Avalonia.Quartz\Avalonia.Quartz.projitems')" />
   <Import Project="..\..\Shared\PlatformSupport\PlatformSupport.projitems" Label="Shared" Condition="Exists('..\..\Shared\PlatformSupport\PlatformSupport.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

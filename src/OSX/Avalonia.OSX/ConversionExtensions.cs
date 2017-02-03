@@ -3,7 +3,7 @@ using CoreGraphics;
 
 namespace Avalonia.OSX
 {
-	public static class ConversionExtensions
+	static class ConversionExtensions
 	{
 		public static CGSize ToNative(this Size size)
 		{

@@ -3,7 +3,7 @@ using Avalonia.Platform;
 
 namespace Avalonia.OSX
 {
-	public class WindowingPlatform : IWindowingPlatform
+	class WindowingPlatform : IWindowingPlatform
 	{
 		public IEmbeddableWindowImpl CreateEmbeddableWindow()
 		{

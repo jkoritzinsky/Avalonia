@@ -7,7 +7,7 @@ using Foundation;
 
 namespace Avalonia.OSX
 {
-	public class PlatformThreadingInterface : IPlatformThreadingInterface
+	class PlatformThreadingInterface : IPlatformThreadingInterface
 	{
 		public bool CurrentThreadIsLoopThread => NSThread.Current.IsMainThread;
 		public event Action Signaled;

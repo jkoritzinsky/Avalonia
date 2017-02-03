@@ -51,11 +51,11 @@ namespace Avalonia.Media
             set { SetValue(TransformProperty, value); }
         }
 
-        /// <summary>
-        /// Clones the geometry.
-        /// </summary>
-        /// <returns>A cloned geometry.</returns>
-        public abstract Geometry Clone();
+		/// <summary>
+		/// Clones the geometry.
+		/// </summary>
+		/// <returns>A cloned geometry.</returns>
+		public abstract Geometry Clone();
 
         /// <summary>
         /// Gets the geometry's bounding rectangle with the specified stroke thickness.

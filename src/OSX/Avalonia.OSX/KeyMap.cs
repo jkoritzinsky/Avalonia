@@ -5,7 +5,7 @@ using Avalonia.Input;
 
 namespace Avalonia.OSX
 {
-	public static class KeyMap
+	static class KeyMap
 	{
 		public static readonly IReadOnlyDictionary<ushort, Key> KeyCodeMap = new Dictionary<ushort, Key>
 		{
@@ -120,7 +120,8 @@ namespace Avalonia.OSX
 			{0x7B, Key.Left},
 			{0x7C, Key.Right},
 			{0x7D, Key.Down},
-			{0x7E, Key.Up}
+			{0x7E, Key.Up},
+			{0xFF, Key.NoName}
 		};
 
 		public static InputModifiers ToAvalonia(this NSEventModifierMask mask)

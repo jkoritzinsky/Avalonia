@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Platform;
+using Avalonia.Rendering;
 
 namespace Avalonia
 {
@@ -26,7 +27,10 @@ namespace Avalonia.OSX
 			               .Bind<IWindowingPlatform>().ToSingleton<WindowingPlatform>()
 			               .Bind<IPlatformIconLoader>().ToSingleton<PlatformIconLoader>()
 			               .Bind<IKeyboardDevice>().ToSingleton<KeyboardDevice>()
-			               .Bind<IMouseDevice>().ToSingleton<MouseDevice>();
+			               .Bind<IMouseDevice>().ToSingleton<MouseDevice>()
+			               .Bind<IRenderLoop>().ToConstant(new DefaultRenderLoop(60))
+			               .Bind<IRendererFactory>().ToSingleton<RendererFactory>()
+			               .Bind<IPlatformSettings>().ToSingleton<PlatformSettings>();
 		}
 	}
 }
