@@ -12,10 +12,6 @@ namespace ControlCatalog
     {
         static void Main(string[] args)
         {
-            InitializeLogging();
-
-            // TODO: Make this work with GTK/Skia/Cairo depending on command-line args
-            // again.
             BuildAvaloniaApp().Start<MainWindow>();
         }
 
@@ -23,18 +19,11 @@ namespace ControlCatalog
         /// This method is needed for IDE previewer infrastructure
         /// </summary>
         public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>().UsePlatformDetect();
-
-        // This will be made into a runtime configuration extension soon!
-        private static void InitializeLogging()
-        {
-#if DEBUG
-            SerilogLogger.Initialize(new LoggerConfiguration()
-                .MinimumLevel.Warning()
-                .WriteTo.Trace(outputTemplate: "{Area}: {Message}")
-                .CreateLogger());
-#endif
-        }
+            => AppBuilder.Configure<App>()
+            .EnableSerilogLogging(
+                Avalonia.Logging.LogEventLevel.Warning,
+                config => config.WriteTo.Trace(outputTemplate: "{Area}: {Message}"))
+            .UsePlatformDetect();
 
         private static void ConfigureAssetAssembly(AppBuilder builder)
         {
