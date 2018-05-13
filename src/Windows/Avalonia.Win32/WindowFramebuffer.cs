@@ -30,11 +30,6 @@ namespace Avalonia.Win32
             _bitmapBlob = AvaloniaLocator.Current.GetService<IRuntimePlatform>().AllocBlob(width * height * 4);
         }
 
-        ~WindowFramebuffer()
-        {
-            Deallocate();
-        }
-
         public IntPtr Address => _bitmapBlob.Address;
         public int RowBytes => Width * 4;
         public PixelFormat Format => PixelFormat.Bgra8888;
