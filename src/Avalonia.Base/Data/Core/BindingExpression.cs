@@ -114,6 +114,11 @@ namespace Avalonia.Data.Core
         /// <inheritdoc/>
         public void OnNext(object value)
         {
+            if (value == BindingOperations.DoNothing)
+            {
+                return;
+            }
+
             using (_inner.Subscribe(_ => { }))
             {
                 var type = _inner.ResultType;
@@ -164,6 +169,10 @@ namespace Avalonia.Data.Core
                             }
                         }
                     }
+                    else if (converted == BindingOperations.DoNothing)
+                    {
+                        _inner.SetValue(value, _priority);
+                    }
                     else
                     {
                         _inner.SetValue(converted, _priority);
@@ -187,7 +196,7 @@ namespace Avalonia.Data.Core
         private object ConvertValue(object value)
         {
             var notification = value as BindingNotification;
-
+            
             if (notification == null)
             {
                 var converted = Converter.Convert(
@@ -195,6 +204,11 @@ namespace Avalonia.Data.Core
                     _targetType,
                     ConverterParameter,
                     CultureInfo.CurrentCulture);
+
+                if (converted == BindingOperations.DoNothing)
+                {
+                    converted = value;
+                }
 
                 notification = converted as BindingNotification;
 
@@ -327,6 +341,11 @@ namespace Avalonia.Data.Core
 
             public void OnNext(object value)
             {
+                if (value == BindingOperations.DoNothing)
+                {
+                    return;
+                }
+
                 var converted = _owner.ConvertValue(value);
                 _owner._value = new WeakReference<object>(converted);
                 _owner.PublishNext(converted);
