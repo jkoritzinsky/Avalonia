@@ -12,7 +12,7 @@ using Avalonia.Metadata;
 namespace Avalonia.Data
 {
     /// <summary>
-    /// A XAML binding that calculates an aggregate value from multiple child <see cref="Bindings"/>.
+    /// A binding that calculates an aggregate value from multiple child <see cref="Bindings"/>.
     /// </summary>
     public class MultiBinding : IBinding
     {
@@ -41,11 +41,6 @@ namespace Avalonia.Data
         /// Gets or sets the binding priority.
         /// </summary>
         public BindingPriority Priority { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the relative source for the binding.
-        /// </summary>
-        public RelativeSource RelativeSource { get; set; }
 
         /// <inheritdoc/>
         public InstancedBinding Initiate(
