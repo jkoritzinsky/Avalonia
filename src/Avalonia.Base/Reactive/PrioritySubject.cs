@@ -23,26 +23,35 @@ namespace Avalonia.Reactive
 
         public void OnCompleted()
         {
+            int activeIndex;
             lock (_lock)
             {
-                _subjects[_activeIndex].OnCompleted();
+                activeIndex = _activeIndex;
             }
+            
+            _subjects[activeIndex].OnCompleted();
         }
 
         public void OnError(Exception error)
         {
+            int activeIndex;
             lock (_lock)
             {
-                _subjects[_activeIndex].OnError(error);
+                activeIndex = _activeIndex;
             }
+            
+            _subjects[activeIndex].OnError(error);
         }
 
         public void OnNext(object value)
         {
+            int activeIndex;
             lock (_lock)
             {
-                _subjects[_activeIndex].OnNext(value);
+                activeIndex = _activeIndex;
             }
+            
+            _subjects[activeIndex].OnNext(value);
         }
 
         protected override void Deinitialize()
@@ -62,16 +71,22 @@ namespace Avalonia.Reactive
 
         private void InnerSubjectOnNext(int index, object value)
         {
+            var publishValue = false;
             if (index < _activeIndex)
             {
                 lock (_lock)
                 {
-                    if (index < _activeIndex && value != BindingOperations.DoNothing)
+                    if (index < _activeIndex)
                     {
                         _activeIndex = index;
-                        PublishNext(value);
+                        publishValue = true;
                     }
                 }
+            }
+            
+            if (publishValue)
+            {
+                PublishNext(value);
             }
         }
     }

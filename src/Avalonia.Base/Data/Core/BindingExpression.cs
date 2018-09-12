@@ -18,6 +18,8 @@ namespace Avalonia.Data.Core
     /// </summary>
     public class BindingExpression : LightweightObservableBase<object>, ISubject<object>, IDescription
     {
+        public static readonly object DoNothing = new DoNothingSentinel();
+
         private readonly ExpressionObserver _inner;
         private readonly Type _targetType;
         private readonly object _fallbackValue;
@@ -114,7 +116,7 @@ namespace Avalonia.Data.Core
         /// <inheritdoc/>
         public void OnNext(object value)
         {
-            if (value == BindingOperations.DoNothing)
+            if (value == DoNothing)
             {
                 return;
             }
@@ -169,7 +171,7 @@ namespace Avalonia.Data.Core
                             }
                         }
                     }
-                    else if (converted == BindingOperations.DoNothing)
+                    else if (converted == DoNothing)
                     {
                         _inner.SetValue(value, _priority);
                     }
@@ -205,7 +207,7 @@ namespace Avalonia.Data.Core
                     ConverterParameter,
                     CultureInfo.CurrentCulture);
 
-                if (converted == BindingOperations.DoNothing)
+                if (converted == DoNothing)
                 {
                     converted = value;
                 }
@@ -341,7 +343,7 @@ namespace Avalonia.Data.Core
 
             public void OnNext(object value)
             {
-                if (value == BindingOperations.DoNothing)
+                if (value == DoNothing)
                 {
                     return;
                 }
@@ -350,6 +352,11 @@ namespace Avalonia.Data.Core
                 _owner._value = new WeakReference<object>(converted);
                 _owner.PublishNext(converted);
             }
+        }
+        
+        private class DoNothingSentinel
+        {
+            public override string ToString() => "(do-nothing)";
         }
     }
 }

@@ -10,8 +10,6 @@ namespace Avalonia.Data
 {
     public static class BindingOperations
     {
-        public static readonly object DoNothing = new DoNothingSentinel();
-
         /// <summary>
         /// Applies an <see cref="InstancedBinding"/> a property on an <see cref="IAvaloniaObject"/>.
         /// </summary>
@@ -71,11 +69,6 @@ namespace Avalonia.Data
                 default:
                     throw new ArgumentException("Invalid binding mode.");
             }
-        }
-
-        private class DoNothingSentinel
-        {
-            public override string ToString() => "(do-nothing)";
         }
     }
 }
